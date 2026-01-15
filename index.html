@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>CompliEasy – Conformité web & RGPD pour TPE/PME</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CompliEasy aide les TPE/PME à mettre leur site web en conformité (mentions légales, politique de confidentialité, cookies, formulaires) simplement et sans jargon.">
+  <style>
+    :root {
+      --primary: #1b4b82;
+      --secondary: #10b981;
+      --light-bg: #f5f7fb;
+      --dark: #111827;
+      --text: #374151;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background-color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: var(--white);
+      padding: 20px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+    }
+
+    .logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--secondary);
+      color: #022c22;
+      box-shadow: 0 9px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(16, 185, 129, 0.55);
+      background-color: #0ea371;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--white);
+      border: 1px solid #60a5fa;
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(37, 99, 235, 0.4);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, #0f172a, #020617);
+      color: var(--white);
+      padding: 40px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      color: #a5b4fc;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: #d1d5db;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1d4ed8 0, #020617 55%);
+      border-radius: 18px;
+      padding: 18px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .hero-metric {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+    }
+
+    .hero-score {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #4ade80;
+    }
+
+    .hero-badges {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 0.78rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background-color: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      width: max-content;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: #22c55e;
+    }
+
+    /* Sections */
+    section {
+      padding: 64px 0;
+    }
+
+    section:nth-of-type(even) {
+      background-color: var(--light-bg);
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      text-align: center;
+      color: var(--dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    /* Packs */
+    .cards {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 800px) {
+      .cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background-color: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+    }
+
+    .card-header {
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .card-price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 10px 0;
+      color: var(--primary);
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .card ul li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .card ul li::before {
+      content: "✓";
+      color: var(--secondary);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .card-footer {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Process */
+    .steps {
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .steps {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .step {
+      background-color: var(--white);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+      font-size: 0.9rem;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    @media (min-width: 840px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      }
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background-color: #ecfeff;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+      margin-bottom: 10px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: #0ea5e9;
+    }
+
+    .about-text p {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .about-list {
+      list-style: none;
+      font-size: 0.88rem;
+      margin-top: 6px;
+    }
+
+    .about-list li {
+      margin-bottom: 5px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .about-list li::before {
+      content: "•";
+      color: var(--secondary);
+      margin-top: 1px;
+    }
+
+    .about-box {
+      background-color: #0b1120;
+      color: #e5e7eb;
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid #1f2937;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.6);
+      font-size: 0.86rem;
+    }
+
+    .about-box-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #93c5fd;
+    }
+
+    .about-box ul {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    .about-box li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .about-box li::before {
+      content: "✔";
+      color: #22c55e;
+      margin-top: 1px;
+    }
+
+    /* Contact */
+    .contact-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    @media (min-width: 840px) {
+      .contact-wrapper {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        align-items: flex-start;
+      }
+    }
+
+    .contact-form {
+      background-color: var(--white);
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      color: var(--muted);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .consent input {
+      width: auto;
+      margin-top: 2px;
+    }
+
+    .contact-info-box {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .contact-info-box strong {
+      color: var(--dark);
+    }
+
+    .badge-legal {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background-color: #ecfdf5;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 18px 0 24px;
+      background-color: #020617;
+      color: #6b7280;
+      font-size: 0.78rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 720px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        position: static;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Compli<span>Easy</span></div>
+    <nav class="nav-links">
+      <a href="#packs">Offres</a>
+      <a href="#process">Comment ça marche</a>
+      <a href="#about">Pourquoi nous</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-outline">Audit 5 minutes</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-kicker">Conformité web & RGPD pour TPE/PME</div>
+        <h1 class="hero-title">
+          Votre site, propre et conforme<br>
+          sans tout refaire, en <span>quelques jours</span>.
+        </h1>
+        <p class="hero-subtitle">
+          CompliEasy met au propre votre vitrine en ligne : mentions, confidentialité, cookies et formulaires.
+          Un audit concret, des corrections simples, aucun jargon juridique.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Demander un audit gratuit</a>
+          <a href="#packs" class="btn btn-outline">Voir les packs</a>
+        </div>
+        <p class="hero-note">
+          Audit rapide sur la base de votre site actuel, sans impact sur le fonctionnement ni changement de prestataire.
+        </p>
+      </div>
+
+      <aside class="hero-card" aria-label="Carte d'aperçu audit CompliEasy">
+        <div class="hero-card-title">Exemple d’audit express</div>
+        <p style="font-size:0.8rem;color:#cbd5f5;">
+          En 5 minutes, nous identifions les points visibles qui peuvent être améliorés sur votre site
+          : informations, consentement, sécurité de base.
+        </p>
+        <div class="hero-metric-row">
+          <div>
+            <div class="hero-metric">Score conformité visible</div>
+            <div class="hero-score">42 / 100</div>
+          </div>
+          <div style="font-size:0.7rem;color:#9ca3af;text-align:right;">
+            Objectif : un site plus clair<br>pour vos visiteurs et vos équipes.
+          </div>
+        </div>
+
+        <div class="hero-badges">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            <span>Mentions & confidentialité à jour</span>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot" style="background-color:#f97316;"></span>
+            <span>Cookies et formulaires clarifiés</span>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot" style="background-color:#38bdf8;"></span>
+            <span>Recommandations concrètes en 3 étapes</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PACKS -->
+  <section id="packs">
+    <div class="container">
+      <h2 class="section-title">Des packs simples pour aller à l’essentiel</h2>
+      <p class="section-subtitle">
+        Trois niveaux d’accompagnement pour mettre votre site en conformité visible :
+        de la base indispensable jusqu’au suivi sur les sites e‑commerce ou plus complexes.
+      </p>
+
+      <div class="cards">
+        <!-- Essentiel -->
+        <article class="card">
+          <div>
+            <div class="card-header">
+              <h3 class="card-title">Pack Essentiel</h3>
+              <p class="card-tagline">Pour mettre votre site vitrine au clair</p>
+            </div>
+            <p class="card-price">300 – 500 € HT</p>
+            <ul>
+              <li>Mentions légales complètes adaptées à votre activité.</li>
+              <li>Politique de confidentialité claire et accessible.</li>
+              <li>Bandeau cookies conforme et discret.</li>
+              <li>Audit rapide du site (10–15 points clés visibles).</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            Idéal pour les TPE/indépendants qui veulent une base propre sans refonte technique.
+          </div>
+        </article>
+
+        <!-- Pro -->
+        <article class="card">
+          <div>
+            <div class="card-header">
+              <h3 class="card-title">Pack Pro</h3>
+              <p class="card-tagline">Pour les PME avec formulaires et suivi clients</p>
+            </div>
+            <p class="card-price">700 – 1 000 € HT</p>
+            <ul>
+              <li>Tout le Pack Essentiel.</li>
+              <li>Revue complète des formulaires (contact, devis, newsletter, comptes).</li>
+              <li>Paramétrage avancé des cookies selon vos outils (analytics, marketing…).</li>
+              <li>Vérifications de sécurité de base (accès admin, HTTPS, sauvegardes simples).</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            Pour les structures qui collectent plus de données et veulent rassurer clients et partenaires.
+          </div>
+        </article>
+
+        <!-- Premium -->
+        <article class="card">
+          <div>
+            <div class="card-header">
+              <h3 class="card-title">Pack Premium</h3>
+              <p class="card-tagline">Pour sites e‑commerce ou environnements complexes</p>
+            </div>
+            <p class="card-price">1 200 – 1 500 € HT</p>
+            <ul>
+              <li>Tout le Pack Pro.</li>
+              <li>Prise en compte des parcours e‑commerce / comptes clients.</li>
+              <li>Accompagnement sur 3 mois pour les ajustements (contenus, bannières, formulaires).</li>
+              <li>Support RGPD basique par email sur les questions courantes de vos équipes.</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            Pour les sites à fort trafic ou à enjeu, qui veulent un suivi continu de leur conformité visible.
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <h2 class="section-title">Un processus simple, sans prise de tête</h2>
+      <p class="section-subtitle">
+        L’objectif : limiter le temps que vous y passez, tout en obtenant un résultat concret et documenté.
+        Vous gardez la main, sans rentrer dans le détail technique.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-title">Audit rapide du site</div>
+          <p>Vous nous envoyez l’URL de votre site. Nous réalisons un audit visible en 5 à 10 minutes et identifions les points prioritaires.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-title">Retour concret & choix du pack</div>
+          <p>Vous recevez un retour synthétique + une recommandation de pack, avec un périmètre clair et un budget encadré.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Corrections et livrables</div>
+          <p>Nous préparons les textes, paramétrages et recommandations. Vous pouvez les intégrer vous‑même ou avec votre prestataire.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Suivi et mises à jour</div>
+          <p>Selon le pack, nous restons disponibles pour ajuster la mise en œuvre et répondre aux questions fréquentes de vos équipes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Conformité pensée pour les TPE/PME</span>
+        </div>
+        <h2 class="section-title" style="text-align:left;margin-bottom:10px;">
+          Une approche pragmatique du RGPD
+        </h2>
+        <p>
+          CompliEasy est né d’un constat simple : beaucoup de sites respectent les grandes lignes du RGPD,
+          mais la vitrine visible (mentions, cookies, formulaires) reste confuse pour les visiteurs.
+        </p>
+        <p>
+          L’ambition est de traduire les exigences de conformité en actions concrètes sur votre site,
+          sans vous surcharger de documents théoriques.
+        </p>
+        <ul class="about-list">
+          <li>Un interlocuteur unique pour votre site et vos questions de conformité visibles.</li>
+          <li>Des livrables immédiatement exploitables par vous ou votre agence web.</li>
+          <li>Un langage simple, orienté métier, sans dramatiser les enjeux.</li>
+        </ul>
+      </div>
+
+      <aside class="about-box">
+        <div class="about-box-title">Ce que vous obtenez concrètement</div>
+        <ul>
+          <li>Un site plus clair pour vos visiteurs, avec des pages légales à jour.</li>
+          <li>Des formulaires et cookies alignés avec les pratiques recommandées.</li>
+          <li>Un rapport synthétique listant ce qui a été fait et les points à surveiller.</li>
+          <li>Une première brique de conformité RGPD, qui pourra évoluer avec votre activité.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Demander un audit gratuit de votre site</h2>
+      <p class="section-subtitle">
+        Indiquez simplement votre site et vos coordonnées.
+        L’audit de 5 minutes est sans engagement : il vous donne un aperçu des principaux points visibles à améliorer.
+      </p>
+
+      <div class="contact-wrapper">
+        <form class="contact-form">
+          <div class="badge-legal">
+            Audit gratuit & sans engagement – vous décidez ensuite si vous souhaitez aller plus loin.
+          </div>
+
+          <div class="form-group">
+            <label for="name">Nom / Prénom</label>
+            <input type="text" id="name" name="name" placeholder="Nom de la personne de contact">
+          </div>
+
+          <div class="form-group">
+            <label for="company">Entreprise</label>
+            <input type="text" id="company" name="company" placeholder="Nom de l’entreprise (ou activité indépendante)">
+          </div>
+
+          <div class="form-group">
+            <label for="website">Site web à auditer</label>
+            <input type="url" id="website" name="website" placeholder="https://votre-site.fr">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email professionnel</label>
+            <input type="email" id="email" name="email" placeholder="vous@entreprise.fr">
+          </div>
+
+          <div class="form-group">
+            <label for="pack">Pack envisagé (optionnel)</label>
+            <select id="pack" name="pack">
+              <option value="">Je ne sais pas encore</option>
+              <option value="essentiel">Pack Essentiel</option>
+              <option value="pro">Pack Pro</option>
+              <option value="premium">Pack Premium</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Contexte (optionnel)</label>
+            <textarea id="message" name="message" placeholder="Ex. : type de site, outils utilisés, priorité principale…"></textarea>
+          </div>
+
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consent">
+            <label for="consent">
+              Je consens à ce que CompliEasy utilise ces informations pour répondre à ma demande d’audit.
+              Pour en savoir plus, consultez la politique de confidentialité.
+            </label>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button type="submit" class="btn btn-primary" style="width:100%;">Envoyer ma demande d’audit</button>
+          </div>
+
+          <p style="margin-top:10px;font-size:0.76rem;color:#9ca3af;">
+            Les informations transmises sont utilisées uniquement pour répondre à votre demande et échanger avec vous.
+            Vous pouvez demander leur suppression à tout moment.
+          </p>
+        </form>
+
+        <div class="contact-info-box">
+          <p><strong>Préférez l’email direct&nbsp;?</strong></p>
+          <p style="margin-top:4px;">
+            Vous pouvez aussi écrire à : <br>
+            <a href="mailto:contact@complieasy.fr">contact@complieasy.fr</a> (exemple d’adresse professionnelle).
+          </p>
+          <p style="margin-top:10px;">
+            Dans votre message, indiquez&nbsp;:
+          </p>
+          <ul style="list-style:none;margin-top:4px;font-size:0.86rem;">
+            <li>• L’URL de votre site.</li>
+            <li>• Votre activité principale.</li>
+            <li>• Si vous avez des formulaires, newsletter, espace client ou boutique en ligne.</li>
+          </ul>
+          <p style="margin-top:10px;">
+            Vous recevez ensuite un retour synthétique, avec 2 ou 3 pistes d’amélioration
+            et une suggestion de pack adapté si vous souhaitez aller plus loin.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;">
+      <div>
+        © <span id="year"></span> CompliEasy – Conformité web & RGPD.
+      </div>
+      <div class="footer-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Politique cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mise à jour automatique de l'année
+  document.getElementById('year').textContent = new Date().getFullYear();
+  // TODO : connecter le formulaire à votre backend / outil de collecte (Formspree, Make, etc.).
+</script>
+
+</body>
+</html>
