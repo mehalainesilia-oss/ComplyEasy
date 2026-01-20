@@ -25,6 +25,8 @@
       line-height: 1.6;
     }
 
+    html { scroll-behavior: smooth; }
+
     a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
@@ -115,7 +117,7 @@
     .hero {
       background: linear-gradient(180deg, #0f172a, #020617);
       color: var(--white);
-      padding: 40px 0 60px;
+      padding: 60px 0 80px;
     }
 
     .hero-grid {
@@ -259,13 +261,20 @@
     .card {
       background-color: var(--white);
       border-radius: 16px;
-      padding: 20px;
+      padding: 24px;
       border: 1px solid #e5e7eb;
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 260px;
+      min-height: 380px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1);
+      border-color: #cbd5e1;
     }
 
     .card-header {
@@ -273,47 +282,90 @@
     }
 
     .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.25rem;
+      font-weight: 700;
       margin-bottom: 4px;
+      color: var(--dark);
     }
 
     .card-tagline {
       font-size: 0.85rem;
       color: var(--muted);
+      min-height: 40px; 
     }
 
     .card-price {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin: 10px 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 16px 0;
       color: var(--primary);
+    }
+    
+    .card-price span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--muted);
     }
 
     .card ul {
       list-style: none;
       font-size: 0.9rem;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
     }
 
     .card ul li {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: flex-start;
     }
 
     .card ul li::before {
       content: "✓";
       color: var(--secondary);
-      font-weight: 600;
+      font-weight: 700;
       margin-top: 2px;
     }
 
     .card-footer {
-      margin-top: 8px;
+      margin-top: auto;
       font-size: 0.8rem;
       color: var(--muted);
+      padding-top: 15px;
+      border-top: 1px solid #f3f4f6;
+    }
+    
+    .card-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-weight: 600;
+      background-color: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+    }
+    
+    .card-btn:hover {
+      background-color: #bae6fd;
+      text-decoration: none;
+    }
+    
+    .card.featured {
+      border: 2px solid var(--secondary);
+      position: relative;
+    }
+    
+    .card.featured .card-btn {
+      background-color: var(--secondary);
+      color: #ffffff;
+      border: none;
+    }
+    
+    .card.featured .card-btn:hover {
+      background-color: #059669;
     }
 
     /* Process */
@@ -331,29 +383,30 @@
     .step {
       background-color: var(--white);
       border-radius: 14px;
-      padding: 16px;
+      padding: 20px;
       border: 1px solid #e5e7eb;
       box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
       font-size: 0.9rem;
     }
 
     .step-number {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
       background-color: #eff6ff;
       color: #1d4ed8;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     .step-title {
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      font-size: 1rem;
     }
 
     .step p {
@@ -394,26 +447,27 @@
     }
 
     .about-text p {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
     }
 
     .about-list {
       list-style: none;
-      font-size: 0.88rem;
-      margin-top: 6px;
+      font-size: 0.9rem;
+      margin-top: 12px;
     }
 
     .about-list li {
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       display: flex;
-      gap: 6px;
+      gap: 8px;
       align-items: flex-start;
     }
 
     .about-list li::before {
       content: "•";
       color: var(--secondary);
+      font-weight: bold;
       margin-top: 1px;
     }
 
@@ -421,27 +475,28 @@
       background-color: #0b1120;
       color: #e5e7eb;
       border-radius: 16px;
-      padding: 18px;
+      padding: 24px;
       border: 1px solid #1f2937;
       box-shadow: 0 16px 40px rgba(15, 23, 42, 0.6);
-      font-size: 0.86rem;
+      font-size: 0.9rem;
     }
 
     .about-box-title {
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       color: #93c5fd;
+      font-size: 1rem;
     }
 
     .about-box ul {
       list-style: none;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
     .about-box li {
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       display: flex;
-      gap: 6px;
+      gap: 8px;
     }
 
     .about-box li::before {
@@ -468,28 +523,29 @@
     .contact-form {
       background-color: var(--white);
       border-radius: 16px;
-      padding: 18px 18px 20px;
+      padding: 24px;
       border: 1px solid #e5e7eb;
       box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
     }
 
     .form-group {
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     label {
       display: block;
-      font-size: 0.8rem;
-      margin-bottom: 4px;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
       color: var(--muted);
+      font-weight: 500;
     }
 
     input, textarea, select {
       width: 100%;
-      padding: 8px 10px;
-      border-radius: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
       border: 1px solid #d1d5db;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-family: inherit;
       outline: none;
       transition: border-color 0.12s ease, box-shadow 0.12s ease;
@@ -497,30 +553,31 @@
 
     input:focus, textarea:focus, select:focus {
       border-color: #2563eb;
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
 
     textarea {
-      min-height: 90px;
+      min-height: 100px;
       resize: vertical;
     }
 
     .consent {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      font-size: 0.78rem;
+      gap: 10px;
+      font-size: 0.8rem;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 10px;
+      line-height: 1.4;
     }
 
     .consent input {
       width: auto;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .contact-info-box {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
@@ -532,36 +589,39 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 8px;
+      padding: 6px 10px;
       border-radius: 999px;
       font-size: 0.75rem;
       background-color: #ecfdf5;
       color: #166534;
       border: 1px solid #bbf7d0;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
+      line-height: 1.3;
     }
 
     footer {
-      padding: 18px 0 24px;
+      padding: 30px 0;
       background-color: #020617;
       color: #6b7280;
-      font-size: 0.78rem;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e293b;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 16px;
       margin-top: 8px;
     }
 
     .footer-links a {
       color: #9ca3af;
       text-decoration: none;
+      transition: color 0.2s;
     }
 
     .footer-links a:hover {
-      color: #e5e7eb;
+      color: #ffffff;
     }
 
     @media (max-width: 720px) {
@@ -575,7 +635,7 @@
         display: none;
       }
       .hero-title {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -621,7 +681,7 @@
 
       <aside class="hero-card" aria-label="Carte d'aperçu audit CompliEasy">
         <div class="hero-card-title">Exemple d’audit express</div>
-        <p style="font-size:0.8rem;color:#cbd5f5;">
+        <p style="font-size:0.85rem;color:#cbd5f5; margin-bottom: 12px;">
           En 5 minutes, nous identifions les points visibles qui peuvent être améliorés sur votre site
           : informations, consentement, sécurité de base.
         </p>
@@ -630,7 +690,7 @@
             <div class="hero-metric">Score conformité visible</div>
             <div class="hero-score">42 / 100</div>
           </div>
-          <div style="font-size:0.7rem;color:#9ca3af;text-align:right;">
+          <div style="font-size:0.75rem;color:#9ca3af;text-align:right; line-height: 1.2;">
             Objectif : un site plus clair<br>pour vos visiteurs et vos équipes.
           </div>
         </div>
@@ -656,10 +716,10 @@
   <!-- PACKS -->
   <section id="packs">
     <div class="container">
-      <h2 class="section-title">Des packs simples pour aller à l’essentiel</h2>
+      <h2 class="section-title">Des packs clairs pour aller à l’essentiel</h2>
       <p class="section-subtitle">
-        Trois niveaux d’accompagnement pour mettre votre site en conformité visible :
-        de la base indispensable jusqu’au suivi sur les sites e‑commerce ou plus complexes.
+        Choisissez l'accompagnement adapté à votre stade de développement.
+        De la mise en conformité essentielle jusqu’au suivi complet pour e-commerce.
       </p>
 
       <div class="cards">
@@ -668,38 +728,45 @@
           <div>
             <div class="card-header">
               <h3 class="card-title">Pack Essentiel</h3>
-              <p class="card-tagline">Pour mettre votre site vitrine au clair</p>
+              <p class="card-tagline">La base indispensable pour tout site vitrine.</p>
             </div>
-            <p class="card-price">300 – 500 € HT</p>
+            <p class="card-price">600 – 900 € <span>HT</span></p>
             <ul>
-              <li>Mentions légales complètes adaptées à votre activité.</li>
-              <li>Politique de confidentialité claire et accessible.</li>
-              <li>Bandeau cookies conforme et discret.</li>
-              <li>Audit rapide du site (10–15 points clés visibles).</li>
+              <li>Mentions légales sur-mesure</li>
+              <li>Politique de confidentialité claire</li>
+              <li>Bandeau cookies conforme CNIL</li>
+              <li>Audit visuel des formulaires (10 points)</li>
             </ul>
           </div>
-          <div class="card-footer">
-            Idéal pour les TPE/indépendants qui veulent une base propre sans refonte technique.
+          <div>
+            <div class="card-footer">
+              Idéal pour TPE/Indépendants qui veulent une base propre.
+            </div>
+            <a href="#contact" class="card-btn">Choisir ce pack</a>
           </div>
         </article>
 
         <!-- Pro -->
-        <article class="card">
+        <article class="card featured">
           <div>
             <div class="card-header">
               <h3 class="card-title">Pack Pro</h3>
-              <p class="card-tagline">Pour les PME avec formulaires et suivi clients</p>
+              <p class="card-tagline">Pour les PME qui génèrent des leads.</p>
             </div>
-            <p class="card-price">700 – 1 000 € HT</p>
+            <p class="card-price">1 200 – 1 800 € <span>HT</span></p>
             <ul>
-              <li>Tout le Pack Essentiel.</li>
-              <li>Revue complète des formulaires (contact, devis, newsletter, comptes).</li>
-              <li>Paramétrage avancé des cookies selon vos outils (analytics, marketing…).</li>
-              <li>Vérifications de sécurité de base (accès admin, HTTPS, sauvegardes simples).</li>
+              <li><strong>Tout le Pack Essentiel</strong></li>
+              <li>Conformité complète des formulaires</li>
+              <li>Paramétrage cookies avancé (Analytics)</li>
+              <li>Check-list sécurité (HTTPS, Admin)</li>
+              <li>Registre des traitements simplifié</li>
             </ul>
           </div>
-          <div class="card-footer">
-            Pour les structures qui collectent plus de données et veulent rassurer clients et partenaires.
+          <div>
+            <div class="card-footer">
+              Pour rassurer clients et partenaires B2B.
+            </div>
+            <a href="#contact" class="card-btn">Choisir ce pack</a>
           </div>
         </article>
 
@@ -708,18 +775,22 @@
           <div>
             <div class="card-header">
               <h3 class="card-title">Pack Premium</h3>
-              <p class="card-tagline">Pour sites e‑commerce ou environnements complexes</p>
+              <p class="card-tagline">Pour E-commerce et sites complexes.</p>
             </div>
-            <p class="card-price">1 200 – 1 500 € HT</p>
+            <p class="card-price">Sur devis <span>(dès 2500€)</span></p>
             <ul>
-              <li>Tout le Pack Pro.</li>
-              <li>Prise en compte des parcours e‑commerce / comptes clients.</li>
-              <li>Accompagnement sur 3 mois pour les ajustements (contenus, bannières, formulaires).</li>
-              <li>Support RGPD basique par email sur les questions courantes de vos équipes.</li>
+              <li><strong>Tout le Pack Pro</strong></li>
+              <li>CGV E-commerce complètes</li>
+              <li>Audit du tunnel de vente</li>
+              <li>Gestion des comptes clients</li>
+              <li>Support DPO prioritaire (3 mois)</li>
             </ul>
           </div>
-          <div class="card-footer">
-            Pour les sites à fort trafic ou à enjeu, qui veulent un suivi continu de leur conformité visible.
+          <div>
+            <div class="card-footer">
+              Pour les sites à fort trafic ou enjeux financiers.
+            </div>
+            <a href="#contact" class="card-btn">Nous contacter</a>
           </div>
         </article>
       </div>
@@ -739,22 +810,22 @@
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-title">Audit rapide du site</div>
-          <p>Vous nous envoyez l’URL de votre site. Nous réalisons un audit visible en 5 à 10 minutes et identifions les points prioritaires.</p>
+          <p>Vous nous envoyez l’URL. Nous réalisons un audit visible en 5 à 10 minutes pour identifier les risques prioritaires.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
-          <div class="step-title">Retour concret & choix du pack</div>
-          <p>Vous recevez un retour synthétique + une recommandation de pack, avec un périmètre clair et un budget encadré.</p>
+          <div class="step-title">Plan d'action & Devis</div>
+          <p>Vous recevez un rapport synthétique + une recommandation de pack avec un budget clair et définitif.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <div class="step-title">Corrections et livrables</div>
-          <p>Nous préparons les textes, paramétrages et recommandations. Vous pouvez les intégrer vous‑même ou avec votre prestataire.</p>
+          <div class="step-title">Mise en conformité</div>
+          <p>Nous préparons les textes, paramétrages et recommandations. Nous pouvons même les intégrer pour vous.</p>
         </div>
         <div class="step">
           <div class="step-number">4</div>
-          <div class="step-title">Suivi et mises à jour</div>
-          <p>Selon le pack, nous restons disponibles pour ajuster la mise en œuvre et répondre aux questions fréquentes de vos équipes.</p>
+          <div class="step-title">Suivi et Garantie</div>
+          <p>Nous vérifions que tout est en place et restons disponibles pour ajuster si besoin.</p>
         </div>
       </div>
     </div>
@@ -801,89 +872,84 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Demander un audit gratuit de votre site</h2>
+      <h2 class="section-title">Demander votre audit gratuit</h2>
       <p class="section-subtitle">
         Indiquez simplement votre site et vos coordonnées.
         L’audit de 5 minutes est sans engagement : il vous donne un aperçu des principaux points visibles à améliorer.
       </p>
 
       <div class="contact-wrapper">
-        <form class="contact-form">
+        <!-- Formulaire configuré pour utiliser Formspree ou EmailJS plus tard. Pour l'instant action mailto -->
+        <form class="contact-form" action="mailto:contact@complieasy.fr" method="POST" enctype="text/plain">
           <div class="badge-legal">
-            Audit gratuit & sans engagement – vous décidez ensuite si vous souhaitez aller plus loin.
+            Audit gratuit & sans engagement – Réponse sous 24h.
           </div>
 
           <div class="form-group">
             <label for="name">Nom / Prénom</label>
-            <input type="text" id="name" name="name" placeholder="Nom de la personne de contact">
+            <input type="text" id="name" name="name" placeholder="Votre nom" required>
           </div>
 
           <div class="form-group">
             <label for="company">Entreprise</label>
-            <input type="text" id="company" name="company" placeholder="Nom de l’entreprise (ou activité indépendante)">
+            <input type="text" id="company" name="company" placeholder="Nom de votre société" required>
           </div>
 
           <div class="form-group">
             <label for="website">Site web à auditer</label>
-            <input type="url" id="website" name="website" placeholder="https://votre-site.fr">
+            <input type="url" id="website" name="website" placeholder="https://www.votre-site.com" required>
           </div>
 
           <div class="form-group">
             <label for="email">Email professionnel</label>
-            <input type="email" id="email" name="email" placeholder="vous@entreprise.fr">
+            <input type="email" id="email" name="email" placeholder="email@entreprise.com" required>
           </div>
 
           <div class="form-group">
             <label for="pack">Pack envisagé (optionnel)</label>
             <select id="pack" name="pack">
-              <option value="">Je ne sais pas encore</option>
-              <option value="essentiel">Pack Essentiel</option>
-              <option value="pro">Pack Pro</option>
-              <option value="premium">Pack Premium</option>
+              <option value="indecis">Je ne sais pas encore</option>
+              <option value="essentiel">Pack Essentiel (dès 600€)</option>
+              <option value="pro">Pack Pro (dès 1200€)</option>
+              <option value="premium">Pack Premium (Sur devis)</option>
             </select>
           </div>
 
           <div class="form-group">
             <label for="message">Contexte (optionnel)</label>
-            <textarea id="message" name="message" placeholder="Ex. : type de site, outils utilisés, priorité principale…"></textarea>
+            <textarea id="message" name="message" placeholder="Avez-vous des délais précis ? Des outils spécifiques installés ?"></textarea>
           </div>
 
           <div class="consent">
-            <input type="checkbox" id="consent" name="consent">
+            <input type="checkbox" id="consent" name="consent" required>
             <label for="consent">
-              Je consens à ce que CompliEasy utilise ces informations pour répondre à ma demande d’audit.
-              Pour en savoir plus, consultez la politique de confidentialité.
+              J'accepte que CompliEasy me contacte pour cet audit. Promis, pas de spam, juste de la conformité.
             </label>
           </div>
 
-          <div style="margin-top:12px;">
+          <div style="margin-top:16px;">
             <button type="submit" class="btn btn-primary" style="width:100%;">Envoyer ma demande d’audit</button>
           </div>
 
-          <p style="margin-top:10px;font-size:0.76rem;color:#9ca3af;">
-            Les informations transmises sont utilisées uniquement pour répondre à votre demande et échanger avec vous.
-            Vous pouvez demander leur suppression à tout moment.
+          <p style="margin-top:12px;font-size:0.75rem;color:#9ca3af; text-align: center;">
+            Vos données sont traitées uniquement pour répondre à votre demande.
           </p>
         </form>
 
         <div class="contact-info-box">
-          <p><strong>Préférez l’email direct&nbsp;?</strong></p>
+          <p><strong>Préférez l’email direct ?</strong></p>
           <p style="margin-top:4px;">
-            Vous pouvez aussi écrire à : <br>
-            <a href="mailto:contact@complieasy.fr">contact@complieasy.fr</a> (exemple d’adresse professionnelle).
+            Écrivez-nous à : <br>
+            <a href="mailto:contact@complieasy.fr" style="font-weight: 600; font-size: 1.1rem;">contact@complieasy.fr</a>
           </p>
-          <p style="margin-top:10px;">
-            Dans votre message, indiquez&nbsp;:
+          <p style="margin-top:16px;">
+            <strong>Ce qui se passe ensuite :</strong>
           </p>
-          <ul style="list-style:none;margin-top:4px;font-size:0.86rem;">
-            <li>• L’URL de votre site.</li>
-            <li>• Votre activité principale.</li>
-            <li>• Si vous avez des formulaires, newsletter, espace client ou boutique en ligne.</li>
+          <ul style="list-style:none;margin-top:8px;font-size:0.9rem; line-height: 1.6;">
+            <li>1. Nous visitons votre site (comme un client mystère).</li>
+            <li>2. Nous notons les 3 erreurs de conformité les plus visibles.</li>
+            <li>3. Nous vous envoyons le rapport par email sous 24h.</li>
           </ul>
-          <p style="margin-top:10px;">
-            Vous recevez ensuite un retour synthétique, avec 2 ou 3 pistes d’amélioration
-            et une suggestion de pack adapté si vous souhaitez aller plus loin.
-          </p>
         </div>
       </div>
     </div>
@@ -893,7 +959,7 @@
 
 <footer>
   <div class="container">
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center;">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;">
       <div>
         © <span id="year"></span> CompliEasy – Conformité web & RGPD.
       </div>
@@ -909,7 +975,6 @@
 <script>
   // Mise à jour automatique de l'année
   document.getElementById('year').textContent = new Date().getFullYear();
-  // TODO : connecter le formulaire à votre backend / outil de collecte (Formspree, Make, etc.).
 </script>
 
 </body>
